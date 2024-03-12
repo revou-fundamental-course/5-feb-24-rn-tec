@@ -1,6 +1,7 @@
 document.getElementById('convert').onclick = tempConvert;
 document.getElementById('clear').onclick = clearForm;
 document.getElementById('reserve').onclick = reserveid;
+fahrenheit.disabled=true;
 
 function tempConvert() {
 
@@ -27,16 +28,20 @@ function clearForm() {
     document.getElementById('fahrenheit').value = '';
     document.getElementById('result').innerHTML = '';
     document.getElementById('resul').innerHTML = '';
+    fahrenheit.disabled=true;
+    celsius.disabled=false;
 }
 
 function reserveid() {
-    var fahrenheit = document.getElementById("fahrenheit").value;
-    var celsius = document.getElementById("celsius").value;
-    
-    temporary = celsius;
-    celsius=fahrenheit;
-    fahrenheit=temporary;
-    document.getElementById('celsius').value = parseFloat(celsius).toFixed(1);
-    document.getElementById('fahrenheit').value = parseFloat(fahrenheit).toFixed(1);
-
+    var textbox1 = document.getElementById("fahrenheit","celsius");
+    var textbox2 = document.getElementById("celsius");
+    clearForm();
+    if (textbox1.disabled) {
+        fahrenheit.disabled = false;
+        celsius.disabled=true;
+    }
+    else if(textbox2.disabled){
+        celsius.disabled=false;
+        fahrenheit.disabled=true;
+    }
 }
